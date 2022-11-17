@@ -28,7 +28,7 @@ namespace Projekat_OOP
         int broj_mina = 40;
         int broj_neotvorenih_polja = 30 * 20;//kada broj neotvorenih polja bude jednak broju mina, igra je gotova-pobeda
         Pen olovka = new Pen(Color.Black, 2);
-        Font fontic = new Font("Arial", 10);
+        Font fontic = new Font("Arial", 13);
         SolidBrush cetka = new SolidBrush(Color.Black);
         
         static int[] nizx = new int[40];
