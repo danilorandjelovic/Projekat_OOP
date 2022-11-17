@@ -48,12 +48,40 @@ namespace Projekat_OOP
                 e.Graphics.DrawLine(olovka, j, 0, j, visina);
             }
         }
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
             pbxTabela.Refresh();
             igra_gotova = false;
             Upisi_minice(matrica, broj_mina);
         }
+        
+        private void pbxTabela_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                int m = e.X / (pbxTabela.Width / 30);
+                int n = e.Y / (pbxTabela.Height / 20);
+                Graphics g = pbxTabela.CreateGraphics();
+                if (!matrica[m, n].mina && !matrica[m, n].otvoreno)
+                {
+                    Otvori_Polje(matrica, m, n);
+                    broj_neotvorenih_polja--;
+                    g.DrawString(Izbroji_Susede(matrica, m, n).ToString(), fontic, cetka, m * (pbxTabela.Width / 30), n * (pbxTabela.Height / 20));
+                }
+                else if (matrica[m, n].mina && !matrica[m, n].otvoreno)
+                {
+                    igra_gotova = true;
+                    for (int i = 0; i < 40; i++)
+                    {
+                        g.DrawString("☼", fontic, cetka, nizx[i] * (pbxTabela.Width / 30), nizy[i] * (pbxTabela.Height / 20));
+                    }
+                    MessageBox.Show("KRAJ IGRE", "IZGUBILI STE");
+                }
+            }
+        }
+
+        //-----------------------------------algoritam-------------------------------------//
         static Polje[,] Upisi_minice(Polje[,] matrica, int broj_mina)
         {
              
