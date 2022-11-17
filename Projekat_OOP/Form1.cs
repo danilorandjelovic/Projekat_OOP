@@ -79,6 +79,12 @@ namespace Projekat_OOP
                     MessageBox.Show("KRAJ IGRE", "IZGUBILI STE");
                 }
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                int m = e.X / (pbxTabela.Width / 30);
+                int n = e.Y / (pbxTabela.Height / 20);
+                g.DrawString("⚑", fontic, cetka, m * (pbxTabela.Width / 30), n * (pbxTabela.Height / 20));
+            }
         }
 
         //-----------------------------------algoritam-------------------------------------//
